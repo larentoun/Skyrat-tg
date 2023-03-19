@@ -137,6 +137,18 @@
 	type_to_check = /datum/preference/toggle/mutant_toggle/tail
 	default_accessory_type = /datum/sprite_accessory/tails/none
 
+/datum/preference/choiced/mutant_choice/tail/vulp
+	savefile_key = "feature_tail_vulp"
+	species_name = SPECIES_VULP
+
+/datum/preference/choiced/mutant_choice/tail/tajaran
+	savefile_key = "feature_tail_tajaran"
+	species_name = SPECIES_TAJARAN
+
+/datum/preference/choiced/mutant_choice/tail/all
+	savefile_key = "feature_tail"
+	species_name = "all"
+
 /datum/preference/tri_color/tail
 	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
 	savefile_identifier = PREFERENCE_CHARACTER

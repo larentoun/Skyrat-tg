@@ -120,11 +120,23 @@
 	var/list/crop_area
 	/// A color to apply to the icon if it's greyscale, and `generate_icons` is enabled.
 	var/greyscale_color
+	/// Specicies specific
+	var/species_name
 
 /datum/preference/choiced/mutant_choice/is_accessible(datum/preferences/preferences)
 	var/passed_initial_check = ..(preferences)
 	var/overriding = preferences.read_preference(/datum/preference/toggle/allow_mismatched_parts)
 	var/part_enabled = is_part_enabled(preferences)
+
+	var/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/datum/species/current_species = new species_type
+
+	if(species_name && species_name != "all" && overriding)
+		return FALSE
+	if(species_name == "all" && !overriding)
+		return FALSE
+	if(species_name != "all" && !overriding)
+		return passed_initial_check && part_enabled && (lowertext(current_species.name) == lowertext(species_name))
 	return (passed_initial_check || overriding) && part_enabled
 
 /// Allows for dynamic assigning of icon states.
@@ -153,7 +165,14 @@
 
 /datum/preference/choiced/mutant_choice/init_possible_values()
 	if(!initial(generate_icons))
-		return assoc_to_keys_features(GLOB.sprite_accessories[relevant_mutant_bodypart])
+		if(!species_name || species_name == "all")
+			return assoc_to_keys_features(GLOB.sprite_accessories[relevant_mutant_bodypart])
+		var/list/species_only = list()
+		for(var/sprite_accessory_name in GLOB.sprite_accessories[relevant_mutant_bodypart])
+			var/datum/sprite_accessory/sprite_accessory = GLOB.sprite_accessories[relevant_mutant_bodypart][sprite_accessory_name]
+			if(species_name in sprite_accessory.recommended_species)
+				species_only += list("[sprite_accessory_name]" = sprite_accessory)
+		return assoc_to_keys_features(species_only)
 
 	var/list/list_of_accessories = list()
 	for(var/sprite_accessory_name as anything in GLOB.sprite_accessories[relevant_mutant_bodypart])

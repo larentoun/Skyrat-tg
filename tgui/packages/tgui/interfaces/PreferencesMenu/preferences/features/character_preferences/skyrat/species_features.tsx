@@ -172,6 +172,20 @@ export const feature_tail: Feature<string> = {
   },
 };
 
+export const feature_tail_vulp: Feature<string> = {
+  name: 'Tail Vulp Selection',
+  description:
+    'Want to have a fancy species name? Put it here, or leave it blank.',
+  component: FeatureDropdownInput,
+};
+
+export const feature_tail_tajaran: Feature<string> = {
+  name: 'Tail Tajaran Selection',
+  description:
+    'Want to have a fancy species name? Put it here, or leave it blank.',
+  component: FeatureDropdownInput,
+};
+
 export const tail_color: Feature<string[]> = {
   name: 'Tail Colors',
   description:

@@ -35,7 +35,7 @@
 /datum/sprite_accessory/tails/none
 	name = "None"
 	icon_state = "none"
-	recommended_species = list(SPECIES_SYNTH, SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_HUMANOID, SPECIES_GHOUL)
+	recommended_species = list(SPECIES_SYNTH, SPECIES_MAMMAL, SPECIES_HUMAN, SPECIES_HUMANOID, SPECIES_GHOUL, SPECIES_VULP, SPECIES_TAJARAN)
 	color_src = null
 	factual = FALSE
 
@@ -168,6 +168,7 @@
 	icon_state = "fish"
 
 /datum/sprite_accessory/tails/mammal/wagging/vulpkanin/fox
+	recommended_species = list(SPECIES_VULP)
 	name = "Fox"
 	icon_state = "fox"
 	fluffy = TRUE
